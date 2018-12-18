@@ -14,8 +14,14 @@ import * as firebase from 'firebase/app';
 })
 export class HomePage {
   @ViewChild(Slides) slides: Slides;
-public values:any;
+  public static value1:any;
+  public static value2:any;
+  public static value3:any;
+  public static value4:any;
+
   constructor(public navCtrl: NavController) {
+ 
+   
     var config = {
       apiKey: "AIzaSyAA7eEpxmnl30MFdAfosuj1DpdzzNnvZaY",
       authDomain: "cdacproject-8bc9f.firebaseapp.com",
@@ -27,15 +33,54 @@ public values:any;
 
 firebase.initializeApp(config);
    var ref= firebase.app().database().ref();
-   var databaseref=ref.child("slot_1");
+   var databaseref1=ref.child("slot_1");
+   var databaseref2=ref.child("slot_2");
+   var databaseref3=ref.child("slot_3");
+   var databaseref4=ref.child("slot_4");
+
+
    
-   databaseref.on("value", function(snapshot) {
-    console.log(snapshot.val());
+   databaseref1.on("value", function(snapshot) {
+   HomePage.value1 = snapshot.val();
+      console.log(HomePage.value1);
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
+
+  databaseref2.on("value", function(snapshot) {
+    HomePage.value2 = snapshot.val();
+    console.log(HomePage.value2);
+   }, function (errorObject) {
+     console.log("The read failed: " + errorObject.code);
+   });
+
+   databaseref3.on("value", function(snapshot) {
+    HomePage.value3 = snapshot.val();
+    console.log(HomePage.value3);
+   }, function (errorObject) {
+     console.log("The read failed: " + errorObject.code);
+   });
+
+   databaseref4.on("value", function(snapshot) {
+    HomePage.value4 = snapshot.val();
+    console.log(HomePage.value4); 
+   }, function (errorObject) {
+     console.log("The read failed: " + errorObject.code);
+   });
       
 
+  }
+  get value1func(){
+    return HomePage.value1;
+  }
+  get value2func(){
+    return HomePage.value2;
+  }
+  get value3func(){
+    return HomePage.value3;
+  }
+  get value4func(){
+    return HomePage.value4;
   }
 
   onContact(){

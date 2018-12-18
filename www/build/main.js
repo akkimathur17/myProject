@@ -155,13 +155,64 @@ var HomePage = /** @class */ (function () {
         };
         __WEBPACK_IMPORTED_MODULE_3_firebase_app__["initializeApp"](config);
         var ref = __WEBPACK_IMPORTED_MODULE_3_firebase_app__["app"]().database().ref();
-        var databaseref = ref.child("slot_1");
-        databaseref.on("value", function (snapshot) {
-            console.log(snapshot.val());
+        var databaseref1 = ref.child("slot_1");
+        var databaseref2 = ref.child("slot_2");
+        var databaseref3 = ref.child("slot_3");
+        var databaseref4 = ref.child("slot_4");
+        databaseref1.on("value", function (snapshot) {
+            HomePage_1.value1 = snapshot.val();
+            console.log(HomePage_1.value1);
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
+        databaseref2.on("value", function (snapshot) {
+            HomePage_1.value2 = snapshot.val();
+            console.log(HomePage_1.value2);
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
+        databaseref3.on("value", function (snapshot) {
+            HomePage_1.value3 = snapshot.val();
+            console.log(HomePage_1.value3);
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
+        databaseref4.on("value", function (snapshot) {
+            HomePage_1.value4 = snapshot.val();
+            console.log(HomePage_1.value4);
         }, function (errorObject) {
             console.log("The read failed: " + errorObject.code);
         });
     }
+    HomePage_1 = HomePage;
+    Object.defineProperty(HomePage.prototype, "value1func", {
+        get: function () {
+            return HomePage_1.value1;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HomePage.prototype, "value2func", {
+        get: function () {
+            return HomePage_1.value2;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HomePage.prototype, "value3func", {
+        get: function () {
+            return HomePage_1.value3;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HomePage.prototype, "value4func", {
+        get: function () {
+            return HomePage_1.value4;
+        },
+        enumerable: true,
+        configurable: true
+    });
     HomePage.prototype.onContact = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__about_about__["a" /* AboutPage */]);
     };
@@ -176,14 +227,14 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Slides */]),
         __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Slides */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Slides */]) === "function" && _a || Object)
     ], HomePage.prototype, "slides", void 0);
-    HomePage = __decorate([
+    HomePage = HomePage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/rishabh/test/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card>\n    <ion-slides  autoplay="5000" loop="true" speed="500" pager="true" (ionSlideDidChange)="slideChanged()">\n      <ion-slide>\n          <h1>This is my Home Automation App</h1>\n      </ion-slide>\n      <ion-slide>\n        <h1>Slide 2</h1>\n      </ion-slide>\n      <ion-slide>\n        <h1>Slide 3</h1>\n      </ion-slide>\n      <ion-slide>\n          <h1>Slide 4</h1>\n      </ion-slide>\n    </ion-slides>\n  </ion-card>\n  <ion-card>\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/living-room.svg" />\n     \n      </ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      \n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/bathroom.svg" />\n      </ion-col>\n    </ion-row>\n    <hr style="margin-top:2px;background-color:aliceblue">\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/kitchen.svg" (click)=onContact() />\n      </ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div> \n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/master-bedroom.svg" />\n      </ion-col>\n    </ion-row>\n      \n      \n      \n      \n      \n      \n      \n      \n      <!--<ion-col>\n        <ion-card-title color="light">\n          Living Room\n        </ion-card-title>\n        <hr style="margin-top:-7px;background-color:aliceblue">\n        <div class="items">\n            <p><strong><em>Usage:</em></strong></p>\n          56.6\n          <sub>kWh</sub>\n          <span class="arrow">\n              <ion-icon name="md-arrow-forward" (click)=onContact()></ion-icon>\n          </span>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n  <ion-card>\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/kitchen.svg" />\n      </ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      \n      <ion-col class="items">\n        <ion-card-title color="light">\n          Kitchen\n        </ion-card-title>\n        <hr style="margin-top:-7px;background-color:aliceblue">\n        <div>\n            <p><strong><em>Usage:</em></strong></p>\n          56.6\n          <sub>kWh</sub>\n          <span class="arrow">\n              <ion-icon name="md-arrow-forward"></ion-icon>\n          </span>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n  <ion-card>\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/bathroom.svg" />\n      </ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>\n      <ion-col>\n        <ion-card-title color="light">\n          Bathroom\n        </ion-card-title>\n        <hr style="margin-top:-7px;background-color:aliceblue">\n        <div class="items">\n            <p><strong><em>Usage:</em></strong></p>\n          56.6\n          <sub>kWh</sub>\n          <span class="arrow">\n              <ion-icon name="md-arrow-forward"></ion-icon>\n          </span>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n  <ion-card>\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/master-bedroom.svg" />\n      </ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>\n      <ion-col>\n        <ion-card-title color="light">\n          Bedroom\n        </ion-card-title>\n        <hr style="margin-top:-7px;background-color:aliceblue">\n        <div class="items">\n            <p><strong><em>Usage:</em></strong></p>\n          56.6\n          <sub>kWh</sub>\n          <span class="arrow">\n              <ion-icon name="md-arrow-forward"></ion-icon>\n          </span>\n        </div>\n      </ion-col>\n    </ion-row>-->\n  </ion-card>\n</ion-content>\n\n'/*ion-inline-end:"/home/rishabh/test/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/rishabh/test/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card>\n    <ion-slides  autoplay="5000" loop="true" speed="500" pager="true" (ionSlideDidChange)="slideChanged()">\n      <ion-slide>\n          <h1>This is my Home Automation App</h1>\n      </ion-slide>\n      <ion-slide>\n        <h1>Slide 2</h1>\n      </ion-slide>\n      <ion-slide>\n        <h1>Slide 3</h1>\n      </ion-slide>\n      <ion-slide>\n          <h1>Slide 4</h1>\n      </ion-slide>\n    </ion-slides>\n  </ion-card>\n  <ion-card>\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/living-room.svg" />\n        {{value1func}} {{value2func}} {{value3func}} {{value4func}}</ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      \n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/bathroom.svg" />\n      </ion-col>\n    </ion-row>\n    <hr style="margin-top:2px;background-color:aliceblue">\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/kitchen.svg" (click)=onContact() />\n      </ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div> \n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/master-bedroom.svg" />\n      </ion-col>\n    </ion-row>\n      \n      \n      \n      \n      \n      \n      \n      \n      <!--<ion-col>\n        <ion-card-title color="light">\n          Living Room\n        </ion-card-title>\n        <hr style="margin-top:-7px;background-color:aliceblue">\n        <div class="items">\n            <p><strong><em>Usage:</em></strong></p>\n          56.6\n          <sub>kWh</sub>\n          <span class="arrow">\n              <ion-icon name="md-arrow-forward" (click)=onContact()></ion-icon>\n          </span>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n  <ion-card>\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/kitchen.svg" />\n      </ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      \n      <ion-col class="items">\n        <ion-card-title color="light">\n          Kitchen\n        </ion-card-title>\n        <hr style="margin-top:-7px;background-color:aliceblue">\n        <div>\n            <p><strong><em>Usage:</em></strong></p>\n          56.6\n          <sub>kWh</sub>\n          <span class="arrow">\n              <ion-icon name="md-arrow-forward"></ion-icon>\n          </span>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n  <ion-card>\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/bathroom.svg" />\n      </ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>\n      <ion-col>\n        <ion-card-title color="light">\n          Bathroom\n        </ion-card-title>\n        <hr style="margin-top:-7px;background-color:aliceblue">\n        <div class="items">\n            <p><strong><em>Usage:</em></strong></p>\n          56.6\n          <sub>kWh</sub>\n          <span class="arrow">\n              <ion-icon name="md-arrow-forward"></ion-icon>\n          </span>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n  <ion-card>\n    <ion-row>\n      <ion-col>\n        <img style="max-width:90%;" src="../../assets/images/master-bedroom.svg" />\n      </ion-col>\n      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>\n      <ion-col>\n        <ion-card-title color="light">\n          Bedroom\n        </ion-card-title>\n        <hr style="margin-top:-7px;background-color:aliceblue">\n        <div class="items">\n            <p><strong><em>Usage:</em></strong></p>\n          56.6\n          <sub>kWh</sub>\n          <span class="arrow">\n              <ion-icon name="md-arrow-forward"></ion-icon>\n          </span>\n        </div>\n      </ion-col>\n    </ion-row>-->\n  </ion-card>\n</ion-content>\n\n'/*ion-inline-end:"/home/rishabh/test/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _b || Object])
     ], HomePage);
     return HomePage;
-    var _a, _b;
+    var HomePage_1, _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
