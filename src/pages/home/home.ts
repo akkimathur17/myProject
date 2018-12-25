@@ -21,6 +21,10 @@ export class HomePage {
   public static value3:any;
   public static value4:any;
   public static value5:any;
+  public static value6:any;
+  public static value7:any;
+  public static value8:any;
+
 
   isListening: boolean = false;
   matches: Array<String>;
@@ -44,6 +48,10 @@ firebase.initializeApp(config);
    var databaseref3=ref.child("motion");
    var databaseref4=ref.child("temp");
    var databaseref5=ref.child("tempstate");
+   var databaseref6=ref.child("washroomstate");
+   var databaseref7=ref.child("bedroomstate");
+   var databaseref8=ref.child("livingroomstate");
+
    
 
    
@@ -78,6 +86,27 @@ firebase.initializeApp(config);
     
     HomePage.value5=snapshot.val();
     console.log(HomePage.value5);
+   }, function (errorObject) {
+     console.log("The read failed: " + errorObject.code);
+   });
+   databaseref6.on("value", function(snapshot) {
+    
+    HomePage.value6=snapshot.val();
+    console.log(HomePage.value6);
+   }, function (errorObject) {
+     console.log("The read failed: " + errorObject.code);
+   });
+   databaseref7.on("value", function(snapshot) {
+    
+    HomePage.value7=snapshot.val();
+    console.log(HomePage.value7);
+   }, function (errorObject) {
+     console.log("The read failed: " + errorObject.code);
+   });
+   databaseref8.on("value", function(snapshot) {
+    
+    HomePage.value8=snapshot.val();
+    console.log(HomePage.value8);
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
    });
@@ -156,7 +185,7 @@ firebase.initializeApp(config);
 
    kitchenValue(){
     var ref= firebase.app().database().ref();
-    var databaseref5=ref.child("tempstate");
+    var databaseref5=ref.child("kitchenstate");
     if(HomePage.value5==0){
       databaseref5.set(1);
        }
@@ -167,4 +196,32 @@ databaseref5.set(0);
    
 
   }
+  washroomValue(){
+    var ref= firebase.app().database().ref();
+    var databaseref6=ref.child("washroomstate");
+    if(HomePage.value6==0){
+      databaseref6.set(1);
+       }
+       else{
+databaseref6.set(0);
+       }}
+  bedroomValue(){
+        var ref= firebase.app().database().ref();
+        var databaseref7=ref.child("bedroomstate");
+        if(HomePage.value7==0){
+          databaseref7.set(1);
+           }
+           else{
+    databaseref7.set(0);
+           }}
+    livingroomValue(){
+            var ref= firebase.app().database().ref();
+            var databaseref8=ref.child("livingroomstate");
+            if(HomePage.value8==0){
+              databaseref8.set(1);
+               }
+               else{
+        databaseref8.set(0);
+               }}
+
 }
