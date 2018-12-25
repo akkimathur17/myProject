@@ -30650,3 +30650,18 @@ h1, h2, h3 {
   -webkit-margin-end: 10px;
   margin-inline-end: 10px;
 }
+
+.ios page-home .card,
+.md page-home .card {
+  background-color: white;
+}
+
+.ios page-home .background,
+.md page-home .background {
+  background-color: rgba(0, 0, 0, 0.918);
+}
+
+.ios page-home .font,
+.md page-home .font {
+  color: black;
+}

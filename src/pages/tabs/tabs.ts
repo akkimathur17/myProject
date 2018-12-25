@@ -9,9 +9,9 @@ import { ContactPage } from '../contact/contact';
 })
 export class TabsPage {
   tab1Root = HomePage;
-  tab2Root = ControlsPage;
+  /*tab2Root = ControlsPage;
   tab3Root = SettingsPage;
-  tab4Root = ContactPage;
+  tab4Root = ContactPage;*/
 
   constructor() {
   }

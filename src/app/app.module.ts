@@ -15,6 +15,10 @@ import { SettingsPage } from '../pages/settings/settings';
 import { SettingsProvider } from '../providers/setting/setting';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
+
+
 var config = {
   apiKey: "AIzaSyAA7eEpxmnl30MFdAfosuj1DpdzzNnvZaY",
   authDomain: "cdacproject-8bc9f.firebaseapp.com",
@@ -53,6 +57,7 @@ var config = {
     StatusBar,
     SplashScreen,
     SettingsProvider,
+    SpeechRecognition,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SettingsProvider
   ]

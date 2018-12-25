@@ -7,8 +7,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
+<ion-content class="background">
+  <ion-card style="background-color:purple">
     <ion-slides  autoplay="5000" loop="true" speed="500" pager="true" (ionSlideDidChange)="slideChanged()">
       <ion-slide>
           <h1>This is my Home Automation App</h1>
@@ -24,13 +24,17 @@
       </ion-slide>
     </ion-slides>
   </ion-card>
-  <ion-card>
-    <ion-row>
-      <ion-col>
-        <img style="max-width:90%;" src="../../assets/images/living-room.svg" />
-        {{value1func}} {{value2func}} {{value3func}} {{value4func}}</ion-col>
-      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      
-      <ion-col>
+  <ion-card class="card">
+    <div>
+        <ion-row>
+            <ion-col>
+              <img style="max-width:90%;" src="../../assets/images/living-room.svg" />
+            </ion-col>
+        </ion-row>
+    </div>
+    
+      <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgb(128,0,128);"></div>      
+      <!--<ion-col>
         <img style="max-width:90%;" src="../../assets/images/bathroom.svg" />
       </ion-col>
     </ion-row>
@@ -43,96 +47,126 @@
       <ion-col>
         <img style="max-width:90%;" src="../../assets/images/master-bedroom.svg" />
       </ion-col>
-    </ion-row>
+    </ion-row>-->
+    <div>
+        <ion-row>
+            <ion-card-title class="font">
+              Living Room
+            </ion-card-title>
+            <hr style="margin-top:-7px;background-color:purple">
+            <div class="items">
+                
+              <!-- <span class="arrow">
+                  <ion-icon name="md-arrow-forward" (click)=onContact()></ion-icon>
+              </span> -->
+              <ion-list>
+                  <p><strong><em>Usage:</em></strong></p>
+                  <ion-item class="card">
+                    <ion-label>Fan : {{value1func}}<sub>kWh</sub></ion-label>
+                    <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+                  </ion-item>
+              </ion-list>
+            </div>
+          </ion-row>
+    </div>
       
-      
-      
-      
-      
-      
-      
-      
-      <!--<ion-col>
-        <ion-card-title color="light">
-          Living Room
-        </ion-card-title>
-        <hr style="margin-top:-7px;background-color:aliceblue">
-        <div class="items">
-            <p><strong><em>Usage:</em></strong></p>
-          56.6
-          <sub>kWh</sub>
-          <span class="arrow">
-              <ion-icon name="md-arrow-forward" (click)=onContact()></ion-icon>
-          </span>
-        </div>
-      </ion-col>
-    </ion-row>
+    
   </ion-card>
-  <ion-card>
+  <ion-card class="card">
     <ion-row>
       <ion-col>
         <img style="max-width:90%;" src="../../assets/images/kitchen.svg" />
       </ion-col>
       <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      
       <ion-col class="items">
-        <ion-card-title color="light">
+        <ion-card-title class="font">
           Kitchen
         </ion-card-title>
         <hr style="margin-top:-7px;background-color:aliceblue">
         <div>
-            <p><strong><em>Usage:</em></strong></p>
-          56.6
-          <sub>kWh</sub>
-          <span class="arrow">
+            <ion-list>
+                <p><strong><em>Usage:</em></strong></p>
+                <ion-item class="card">
+                  <ion-label>Oven : {{value2func}}<sub>kWh</sub></ion-label>
+                  <ion-toggle [(ngModel)]="abc"></ion-toggle>
+                </ion-item>
+            </ion-list>
+          <!-- <span class="arrow">
               <ion-icon name="md-arrow-forward"></ion-icon>
-          </span>
+          </span> -->
         </div>
       </ion-col>
     </ion-row>
   </ion-card>
-  <ion-card>
+  <ion-card class="card">
     <ion-row>
       <ion-col>
         <img style="max-width:90%;" src="../../assets/images/bathroom.svg" />
       </ion-col>
       <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>
       <ion-col>
-        <ion-card-title color="light">
+        <ion-card-title class="font">
           Bathroom
         </ion-card-title>
         <hr style="margin-top:-7px;background-color:aliceblue">
         <div class="items">
-            <p><strong><em>Usage:</em></strong></p>
-          56.6
-          <sub>kWh</sub>
-          <span class="arrow">
+            <ion-list>
+                <p><strong><em>Usage:</em></strong></p>
+                <ion-item class="card">
+                  <ion-label>Gyser : {{value3func}}<sub>kWh</sub></ion-label>
+                  <ion-toggle [(ngModel)]="def"></ion-toggle>
+                </ion-item>
+            </ion-list>
+          <!-- <span class="arrow">
               <ion-icon name="md-arrow-forward"></ion-icon>
-          </span>
+          </span> -->
         </div>
       </ion-col>
     </ion-row>
   </ion-card>
-  <ion-card>
+  <ion-card class="card">
     <ion-row>
       <ion-col>
         <img style="max-width:90%;" src="../../assets/images/master-bedroom.svg" />
       </ion-col>
       <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>
       <ion-col>
-        <ion-card-title color="light">
+        <ion-card-title class="font">
           Bedroom
         </ion-card-title>
         <hr style="margin-top:-7px;background-color:aliceblue">
         <div class="items">
-            <p><strong><em>Usage:</em></strong></p>
-          56.6
-          <sub>kWh</sub>
-          <span class="arrow">
+            <ion-list>
+                <p><strong><em>Usage:</em></strong></p>
+                <ion-item class="card">
+                  <ion-label>Fan : {{value4func}}<sub>kWh</sub></ion-label>
+                  <ion-toggle [(ngModel)]="ghi"></ion-toggle>
+                </ion-item>
+            </ion-list>
+          <!-- <span class="arrow">
               <ion-icon name="md-arrow-forward"></ion-icon>
-          </span>
+          </span> -->
         </div>
       </ion-col>
-    </ion-row>-->
+    </ion-row>
   </ion-card>
+  
+  <button ion-button (click)="getPermission()">Get Permission</button>
+  <button ion-button (click)="listen()">
+    <div>
+      <ion-icon name="mic">
+        <label>Speak to me</label>
+      </ion-icon>
+    </div>
+  </button>
+
+  <ion-card>
+    <ion-card-content *ngFor="let match of matches">
+      <p>{{ match }}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+      <p>Is listening ? : {{ isListening }}</p>
+    </ion-card>
 </ion-content>
 
