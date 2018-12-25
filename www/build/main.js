@@ -190,10 +190,10 @@ var HomePage = /** @class */ (function () {
         };
         __WEBPACK_IMPORTED_MODULE_3_firebase_app__["initializeApp"](config);
         var ref = __WEBPACK_IMPORTED_MODULE_3_firebase_app__["app"]().database().ref();
-        var databaseref1 = ref.child("slot_1");
-        var databaseref2 = ref.child("slot_2");
-        var databaseref3 = ref.child("slot_3");
-        var databaseref4 = ref.child("slot_4");
+        var databaseref1 = ref.child("air_quality");
+        var databaseref2 = ref.child("humidity");
+        var databaseref3 = ref.child("motion");
+        var databaseref4 = ref.child("temp");
         databaseref1.on("value", function (snapshot) {
             HomePage_1.value1 = snapshot.val();
             console.log(HomePage_1.value1);

@@ -38,10 +38,10 @@ export class HomePage {
 
 firebase.initializeApp(config);
    var ref= firebase.app().database().ref();
-   var databaseref1=ref.child("slot_1");
-   var databaseref2=ref.child("slot_2");
-   var databaseref3=ref.child("slot_3");
-   var databaseref4=ref.child("slot_4");
+   var databaseref1=ref.child("air_quality");
+   var databaseref2=ref.child("humidity");
+   var databaseref3=ref.child("motion");
+   var databaseref4=ref.child("temp");
 
 
    
