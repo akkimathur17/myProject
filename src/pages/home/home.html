@@ -88,7 +88,7 @@
                 <p><strong><em>Usage:</em></strong></p>
                 <ion-item class="card">
                   <ion-label>Oven : {{value2func}}<sub>kWh</sub></ion-label>
-                  <ion-toggle [(ngModel)]="abc"></ion-toggle>
+                  <ion-toggle [(ngModel)]="abc" (click)="kitchenValue()"></ion-toggle>
                 </ion-item>
             </ion-list>
           <!-- <span class="arrow">

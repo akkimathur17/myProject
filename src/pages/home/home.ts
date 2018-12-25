@@ -20,6 +20,7 @@ export class HomePage {
   public static value2:any;
   public static value3:any;
   public static value4:any;
+  public static value5:any;
 
   isListening: boolean = false;
   matches: Array<String>;
@@ -42,7 +43,8 @@ firebase.initializeApp(config);
    var databaseref2=ref.child("humidity");
    var databaseref3=ref.child("motion");
    var databaseref4=ref.child("temp");
-
+   var databaseref5=ref.child("tempstate");
+   
 
    
    databaseref1.on("value", function(snapshot) {
@@ -72,6 +74,14 @@ firebase.initializeApp(config);
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
    });
+   databaseref5.on("value", function(snapshot) {
+    
+    HomePage.value5=snapshot.val();
+    console.log(HomePage.value5);
+   }, function (errorObject) {
+     console.log("The read failed: " + errorObject.code);
+   });
+
       
 
   }
@@ -144,4 +154,17 @@ firebase.initializeApp(config);
     console.log('listening mode is now : ' + this.isListening);
   }
 
+   kitchenValue(){
+    var ref= firebase.app().database().ref();
+    var databaseref5=ref.child("tempstate");
+    if(HomePage.value5==0){
+      databaseref5.set(1);
+       }
+       else{
+databaseref5.set(0);
+       }
+    
+   
+
+  }
 }
