@@ -24,6 +24,8 @@ export class HomePage {
   public static value6:any;
   public static value7:any;
   public static value8:any;
+ public livingroom:boolean=true;
+  
 
 
   isListening: boolean = false;
@@ -31,7 +33,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public speech: SpeechRecognition, private zone: NgZone) {
  
-   
+           
     var config = {
       apiKey: "AIzaSyAA7eEpxmnl30MFdAfosuj1DpdzzNnvZaY",
       authDomain: "cdacproject-8bc9f.firebaseapp.com",
@@ -106,6 +108,13 @@ firebase.initializeApp(config);
    databaseref8.on("value", function(snapshot) {
     
     HomePage.value8=snapshot.val();
+    if(HomePage.value8){
+  
+    }
+    else{
+      
+    
+    }
     console.log(HomePage.value8);
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
@@ -125,6 +134,9 @@ firebase.initializeApp(config);
   }
   get value4func(){
     return HomePage.value4;
+  }
+  get livingroom4Value(){
+    return this.livingroom;
   }
 
   onContact(){
