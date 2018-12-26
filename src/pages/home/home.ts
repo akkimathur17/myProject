@@ -24,7 +24,9 @@ export class HomePage {
   public static value6:any;
   public static value7:any;
   public static value8:any;
- public livingroom:boolean=true;
+  public  livingroom:boolean=true;
+  
+ 
   
 
 
@@ -32,7 +34,7 @@ export class HomePage {
   matches: Array<String>;
 
   constructor(public navCtrl: NavController, public speech: SpeechRecognition, private zone: NgZone) {
- 
+  
            
     var config = {
       apiKey: "AIzaSyAA7eEpxmnl30MFdAfosuj1DpdzzNnvZaY",
@@ -108,22 +110,18 @@ firebase.initializeApp(config);
    databaseref8.on("value", function(snapshot) {
     
     HomePage.value8=snapshot.val();
-    if(HomePage.value8){
-  
-    }
-    else{
-      
-    
-    }
     console.log(HomePage.value8);
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
    });
-
+   
+  
+    
+    
       
 
   }
-  get value1func(){
+  get  value1func(){
     return HomePage.value1;
   }
   get value2func(){
@@ -135,9 +133,7 @@ firebase.initializeApp(config);
   get value4func(){
     return HomePage.value4;
   }
-  get livingroom4Value(){
-    return this.livingroom;
-  }
+ 
 
   onContact(){
     this.navCtrl.push(AboutPage);
@@ -194,7 +190,7 @@ firebase.initializeApp(config);
     this.isListening = this.isListening ? false : true;
     console.log('listening mode is now : ' + this.isListening);
   }
-
+ 
    kitchenValue(){
     var ref= firebase.app().database().ref();
     var databaseref5=ref.child("kitchenstate");

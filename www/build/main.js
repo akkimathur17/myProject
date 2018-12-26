@@ -243,10 +243,6 @@ var HomePage = /** @class */ (function () {
         });
         databaseref8.on("value", function (snapshot) {
             HomePage_1.value8 = snapshot.val();
-            if (HomePage_1.value8) {
-            }
-            else {
-            }
             console.log(HomePage_1.value8);
         }, function (errorObject) {
             console.log("The read failed: " + errorObject.code);
@@ -277,13 +273,6 @@ var HomePage = /** @class */ (function () {
     Object.defineProperty(HomePage.prototype, "value4func", {
         get: function () {
             return HomePage_1.value4;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(HomePage.prototype, "livingroom4Value", {
-        get: function () {
-            return this.livingroom;
         },
         enumerable: true,
         configurable: true
