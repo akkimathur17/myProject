@@ -63,7 +63,7 @@
                   <p><strong><em>Usage:</em></strong></p>
                   <ion-item class="card">
                     <ion-label>Fan : {{value1func}}<sub>kWh</sub></ion-label>
-                    <ion-toggle [(ngModel)]="livingroom" (click)="livingroomValue()"></ion-toggle>
+                    <ion-toggle [(ngModel)]="livingstatevalue" (click)="livingroomValue()"></ion-toggle>
                   <h1>{{livingroom}}</h1>
                   </ion-item>
               </ion-list>
@@ -89,7 +89,7 @@
                 <p><strong><em>Usage:</em></strong></p>
                 <ion-item class="card">
                   <ion-label>Oven : {{value2func}}<sub>kWh</sub></ion-label>
-                  <ion-toggle [(ngModel)]="abc" (click)="kitchenValue()"></ion-toggle>
+                  <ion-toggle [(ngModel)]="kitchenstatevalue" (click)="kitchenValue()"></ion-toggle>
                 </ion-item>
             </ion-list>
           <!-- <span class="arrow">
@@ -115,7 +115,7 @@
                 <p><strong><em>Usage:</em></strong></p>
                 <ion-item class="card">
                   <ion-label>Gyser : {{value3func}}<sub>kWh</sub></ion-label>
-                  <ion-toggle [(ngModel)]="def" (click)="washroomValue()"></ion-toggle>
+                  <ion-toggle [(ngModel)]="washroomstatevalue" (click)="washroomValue()"></ion-toggle>
                 </ion-item>
             </ion-list>
           <!-- <span class="arrow">
@@ -141,7 +141,7 @@
                 <p><strong><em>Usage:</em></strong></p>
                 <ion-item class="card">
                   <ion-label>Fan : {{value4func}}<sub>kWh</sub></ion-label>
-                  <ion-toggle [(ngModel)]="ghi" (click)="bedroomValue()"></ion-toggle>
+                  <ion-toggle [(ngModel)]="bedroomstatevalue" (click)="bedroomValue()"></ion-toggle>
                 </ion-item>
             </ion-list>
           <!-- <span class="arrow">

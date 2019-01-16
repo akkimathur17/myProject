@@ -6,6 +6,7 @@ import { AboutPage } from '../about/about';
 import * as firebase from 'firebase/app';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import {  NgZone } from '@angular/core';
+import { GlobalProvider } from '../../providers/global/global';
 
 
 
@@ -24,9 +25,12 @@ export class HomePage {
   public static value6:any;
   public static value7:any;
   public static value8:any;
-  public  livingroom:boolean=true;
+  public static livingroom:boolean;
+  public static washroom:boolean;
+  public static bedroom:boolean;
+  public static kitchen:boolean;
   
- 
+   
   
 
 
@@ -51,16 +55,17 @@ firebase.initializeApp(config);
    var databaseref2=ref.child("humidity");
    var databaseref3=ref.child("motion");
    var databaseref4=ref.child("temp");
-   var databaseref5=ref.child("tempstate");
+   var databaseref5=ref.child("kitchenstate");
    var databaseref6=ref.child("washroomstate");
    var databaseref7=ref.child("bedroomstate");
    var databaseref8=ref.child("livingroomstate");
-
+  
    
 
    
    databaseref1.on("value", function(snapshot) {
    HomePage.value1 = snapshot.val();
+   
       console.log(HomePage.value1);
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -86,41 +91,81 @@ firebase.initializeApp(config);
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
    });
+   //kitchen
    databaseref5.on("value", function(snapshot) {
     
     HomePage.value5=snapshot.val();
-    console.log(HomePage.value5);
+    if(HomePage.value5){
+      HomePage.kitchen=true;
+     }
+     else{
+       HomePage.kitchen=false;
+     }
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
    });
+
+   //washroom
    databaseref6.on("value", function(snapshot) {
     
     HomePage.value6=snapshot.val();
-    console.log(HomePage.value6);
+    if(HomePage.value6){
+      HomePage.washroom=true;
+     }
+     else{
+       HomePage.washroom=false;
+     }
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
    });
+   //bedroom
    databaseref7.on("value", function(snapshot) {
     
     HomePage.value7=snapshot.val();
-    console.log(HomePage.value7);
+    
+    if(HomePage.value7){
+      HomePage.bedroom=true;
+     }
+     else{
+       HomePage.bedroom=false;
+     }
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
    });
+   //livingroom
    databaseref8.on("value", function(snapshot) {
+       HomePage.value8=snapshot.val();
+    if(HomePage.value8){
+     HomePage.livingroom=true;
+    }
+    else{
+      HomePage.livingroom=false;
+    }
     
-    HomePage.value8=snapshot.val();
-    console.log(HomePage.value8);
-   }, function (errorObject) {
+    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
-   });
-   
+   }); 
   
-    
+  
     
       
 
   }
+  get livingstatevalue(){
+    return HomePage.livingroom;
+  }
+  get bedroomstatevalue(){
+    return HomePage.bedroom;
+  }
+  get washroomstatevalue(){
+    return HomePage.washroom
+    ;
+  }
+
+  get kitchenstatevalue(){
+    return HomePage.kitchen;
+  }
+  
   get  value1func(){
     return HomePage.value1;
   }
@@ -133,7 +178,7 @@ firebase.initializeApp(config);
   get value4func(){
     return HomePage.value4;
   }
- 
+  
 
   onContact(){
     this.navCtrl.push(AboutPage);
@@ -200,10 +245,7 @@ firebase.initializeApp(config);
        else{
 databaseref5.set(0);
        }
-    
-   
-
-  }
+    }
   washroomValue(){
     var ref= firebase.app().database().ref();
     var databaseref6=ref.child("washroomstate");
@@ -232,4 +274,5 @@ databaseref6.set(0);
         databaseref8.set(0);
                }}
 
-}
+
+              }

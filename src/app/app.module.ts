@@ -17,6 +17,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { GlobalProvider } from '../providers/global/global';
 
 
 var config = {
@@ -59,7 +60,8 @@ var config = {
     SettingsProvider,
     SpeechRecognition,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SettingsProvider
+    SettingsProvider,
+    GlobalProvider
   ]
 })
 export class AppModule {}
