@@ -151,6 +151,22 @@ firebase.initializeApp(config);
       
 
   }
+ngOnInit() {
+
+    this.speech.hasPermission()
+      .then((hasPermission: boolean) => {
+
+        if (!hasPermission) {
+        this.speech.requestPermission()
+          .then(
+            () => console.log('Granted'),
+            () => console.log('Denied')
+          )
+        }
+
+     });
+
+  }
   get livingstatevalue(){
     return HomePage.livingroom;
   }
@@ -191,25 +207,9 @@ firebase.initializeApp(config);
       this.slides.stopAutoplay();
     }
   }
+  
 
-  async hasPermission():Promise<boolean> {
-    try {
-      const permission = await this.speech.hasPermission();
-      console.log(permission);
-
-      return permission;
-    } catch(e) {
-      console.log(e);
-    }
-  }
-
-  async getPermission():Promise<void> {
-    try {
-      this.speech.requestPermission();
-    } catch(e) {
-      console.log(e);
-    }
-  }
+ 
 
   listen(): void {
     console.log('listen action triggered');
@@ -219,17 +219,32 @@ firebase.initializeApp(config);
       return;
     }
 
-    this.toggleListenMode();
-    let _this = this;
-
+    
     this.speech.startListening()
       .subscribe(matches => {
-        _this.zone.run(() => {
-          _this.matches = matches;
-        })
+       switch(matches[0]){
+       case "turn off bedroom":
+       this.bedroomValue();
+    break;
+       
+       case "turn off washroom":
+   this.washroomValue();
+break;  
+        case "turn off kitchen":
+        this.kitchenValue();
+        break;
+       
+
+       case "turn off living room":
+
+this.livingroomValue();
+break;
+      
+}
       }, error => console.error(error));
 
   }
+ 
 
   toggleListenMode():void {
     this.isListening = this.isListening ? false : true;

@@ -60,7 +60,7 @@
   "cordova-plugin-speechrecognition": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-speechrecognition"
+      "id": "cordova-plugin-speechrecognition@~1.1.2"
     },
     "is_top_level": true,
     "variables": {}
