@@ -4,6 +4,8 @@ import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 import * as firebase from 'firebase/app';
+
+
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import {  NgZone } from '@angular/core';
 import { GlobalProvider } from '../../providers/global/global';
@@ -37,7 +39,7 @@ export class HomePage {
   isListening: boolean = false;
   matches: Array<String>;
 
-  constructor(public navCtrl: NavController, public speech: SpeechRecognition, private zone: NgZone) {
+  constructor(public navCtrl: NavController,public speech: SpeechRecognition, private zone: NgZone) {
   
            
     var config = {
@@ -48,8 +50,8 @@ export class HomePage {
       storageBucket: "cdacproject-8bc9f.appspot.com",
       messagingSenderId: "767234563615"
     };
-
-firebase.initializeApp(config);
+if(!firebase.app.length){
+firebase.initializeApp(config);}
    var ref= firebase.app().database().ref();
    var databaseref1=ref.child("air_quality");
    var databaseref2=ref.child("humidity");
@@ -59,7 +61,7 @@ firebase.initializeApp(config);
    var databaseref6=ref.child("washroomstate");
    var databaseref7=ref.child("bedroomstate");
    var databaseref8=ref.child("livingroomstate");
-  
+   
    
 
    
@@ -222,25 +224,42 @@ ngOnInit() {
     
     this.speech.startListening()
       .subscribe(matches => {
-       switch(matches[0]){
-       case "turn off bedroom":
-       this.bedroomValue();
-    break;
-       
-       case "turn off washroom":
-   this.washroomValue();
-break;  
-        case "turn off kitchen":
-        this.kitchenValue();
-        break;
-       
-
-       case "turn off living room":
-
-this.livingroomValue();
-break;
-      
-}
+        this.zone.run(() => {
+          var ref= firebase.app().database().ref();
+          var databaseref5=ref.child("kitchenstate");
+   var databaseref6=ref.child("washroomstate");
+   var databaseref7=ref.child("bedroomstate");
+   var databaseref8=ref.child("livingroomstate");
+          this.matches = matches;
+        switch(matches[0]){
+          case "turn off bedroom":
+          databaseref7.set(0);
+          break;
+          case "turn off washroom":
+          databaseref6.set(0);
+          break;
+          case "turn off kitchen":
+          databaseref5.set(0);
+          break;
+          case "turn off living room":
+          databaseref8.set(0);
+          break;
+          case "turn on bedroom":
+          databaseref7.set(1);
+          break;
+          case "turn on washroom":
+          databaseref6.set(1);
+          break;
+          case "turn on kitchen":
+          databaseref5.set(1);
+          break;
+          case "turn on living room":
+          databaseref8.set(1);
+          break;
+        }
+        
+        
+        })
       }, error => console.error(error));
 
   }
