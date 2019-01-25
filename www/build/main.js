@@ -122,14 +122,8 @@ var BedroomPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_2_firebase_app__["initializeApp"](config);
         }
         var ref = __WEBPACK_IMPORTED_MODULE_2_firebase_app__["app"]().database().ref();
-        var databaseref4 = ref.child("temp");
         var databaseref7 = ref.child("bedroomstate");
-        databaseref4.on("value", function (snapshot) {
-            BedroomPage_1.value4 = snapshot.val();
-            console.log(BedroomPage_1.value4);
-        }, function (errorObject) {
-            console.log("The read failed: " + errorObject.code);
-        });
+        var databaseref8 = ref.child("bedroomfan");
         databaseref7.on("value", function (snapshot) {
             BedroomPage_1.value7 = snapshot.val();
             if (BedroomPage_1.value7) {
@@ -141,11 +135,29 @@ var BedroomPage = /** @class */ (function () {
         }, function (errorObject) {
             console.log("The read failed: " + errorObject.code);
         });
+        databaseref8.on("value", function (snapshot) {
+            BedroomPage_1.value8 = snapshot.val();
+            if (BedroomPage_1.value8) {
+                BedroomPage_1.bedroomfan = true;
+            }
+            else {
+                BedroomPage_1.bedroomfan = false;
+            }
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
     }
     BedroomPage_1 = BedroomPage;
     Object.defineProperty(BedroomPage.prototype, "bedroomstatevalue", {
         get: function () {
             return BedroomPage_1.bedroom;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BedroomPage.prototype, "bedroomstatefanvalue", {
+        get: function () {
+            return BedroomPage_1.bedroomfan;
         },
         enumerable: true,
         configurable: true
@@ -165,12 +177,27 @@ var BedroomPage = /** @class */ (function () {
         });
         toast.present();
     };
+    BedroomPage.prototype.bedroomfanValue = function () {
+        var ref = __WEBPACK_IMPORTED_MODULE_2_firebase_app__["app"]().database().ref();
+        var databaseref8 = ref.child("bedroomfan");
+        if (BedroomPage_1.value8 == 0) {
+            databaseref8.set(1);
+        }
+        else {
+            databaseref8.set(0);
+        }
+        var toast = this.toastCtrl.create({
+            message: 'Aplliances handeled successfully',
+            duration: 3000
+        });
+        toast.present();
+    };
     BedroomPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad BedroomPage');
     };
     BedroomPage = BedroomPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-bedroom',template:/*ion-inline-start:"/home/rishabh/test/src/pages/bedroom/bedroom.html"*/'<!--\n  Generated template for the BedroomPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Bedroom</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="background">\n  <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>\n  <ion-col>\n    <ion-card-title class="font">\n      <strong><em>Usage:</em></strong>\n    </ion-card-title>\n    <hr style="margin-top:-7px;background-color:aliceblue">\n    <div class="items">\n        <ion-list>\n            <ion-item class="card">\n              <ion-label>Fan : {{value4func}}</ion-label>\n              <ion-toggle [(ngModel)]="bedroomstatevalue" (click)="bedroomValue()"></ion-toggle>\n            </ion-item>\n\n            <ion-item class="card">\n                <ion-label>Lights : {{value4func}}</ion-label>\n                <ion-toggle [(ngModel)]="bedroomstatevalue" (click)="bedroomValue()"></ion-toggle>\n            </ion-item>\n         </ion-list>\n      </div>\n  </ion-col>\n</ion-content>\n'/*ion-inline-end:"/home/rishabh/test/src/pages/bedroom/bedroom.html"*/,
+            selector: 'page-bedroom',template:/*ion-inline-start:"/home/rishabh/test/src/pages/bedroom/bedroom.html"*/'<!--\n  Generated template for the BedroomPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Bedroom</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="background">\n  <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>\n  <ion-col>\n    <ion-card-title class="font">\n      <strong><em>Usage:</em></strong>\n    </ion-card-title>\n    <hr style="margin-top:-7px;background-color:aliceblue">\n    <div class="items">\n        <ion-list>\n            <ion-item class="card">\n              <ion-label>Fan : {{value4func}}</ion-label>\n              <ion-toggle [(ngModel)]="bedroomstatevalue" (click)="bedroomValue()"></ion-toggle>\n            </ion-item>\n\n            <ion-item class="card">\n                <ion-label>Lights : {{value4func}}</ion-label>\n                <ion-toggle [(ngModel)]="bedroomstatefanvalue" (click)="bedroomfanValue()"></ion-toggle>\n            </ion-item>\n         </ion-list>\n      </div>\n  </ion-col>\n</ion-content>\n'/*ion-inline-end:"/home/rishabh/test/src/pages/bedroom/bedroom.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], BedroomPage);
@@ -227,14 +254,7 @@ var KitchenPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_2_firebase_app__["initializeApp"](config);
         }
         var ref = __WEBPACK_IMPORTED_MODULE_2_firebase_app__["app"]().database().ref();
-        var databaseref2 = ref.child("humidity");
         var databaseref5 = ref.child("kitchenstate");
-        databaseref2.on("value", function (snapshot) {
-            KitchenPage_1.value2 = snapshot.val();
-            console.log(KitchenPage_1.value2);
-        }, function (errorObject) {
-            console.log("The read failed: " + errorObject.code);
-        });
         databaseref5.on("value", function (snapshot) {
             KitchenPage_1.value5 = snapshot.val();
             if (KitchenPage_1.value5) {
@@ -270,19 +290,12 @@ var KitchenPage = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(KitchenPage.prototype, "value2func", {
-        get: function () {
-            return KitchenPage_1.value2;
-        },
-        enumerable: true,
-        configurable: true
-    });
     KitchenPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad LivingRoomPage');
     };
     KitchenPage = KitchenPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-kitchen',template:/*ion-inline-start:"/home/rishabh/test/src/pages/kitchen/kitchen.html"*/'<!--\n  Generated template for the KitchenPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Kitchen</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="background">\n  <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      \n  <ion-col class="items">\n    <ion-card-title class="font">\n        <strong><em>Usage:</em></strong>\n    </ion-card-title>\n\n    <hr style="margin-top:-7px;background-color:aliceblue">\n    <div>\n      <ion-list>\n        <ion-item class="card">\n          <ion-label>Oven: </ion-label>\n          <ion-toggle [(ngModel)]="kitchenstatevalue" (click)="kitchenValue()"></ion-toggle>\n        </ion-item>\n\n        <ion-item class="card">\n          <ion-label>Fan: </ion-label>\n          <ion-toggle [(ngModel)]="kitchenstatevalue" (click)="kitchenValue()"></ion-toggle>\n        </ion-item>\n\n\n      </ion-list>\n    </div>\n  </ion-col>\n</ion-content>\n'/*ion-inline-end:"/home/rishabh/test/src/pages/kitchen/kitchen.html"*/,
+            selector: 'page-kitchen',template:/*ion-inline-start:"/home/rishabh/test/src/pages/kitchen/kitchen.html"*/'<!--\n  Generated template for the KitchenPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Kitchen</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="background">\n  <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      \n  <ion-col class="items">\n    <ion-card-title class="font">\n        <strong><em>Usage:</em></strong>\n    </ion-card-title>\n\n    <hr style="margin-top:-7px;background-color:aliceblue">\n    <div>\n      <ion-list>\n       \n\n        <ion-item class="card">\n          <ion-label>Fan: </ion-label>\n          <ion-toggle [(ngModel)]="kitchenstatevalue" (click)="kitchenValue()"></ion-toggle>\n        </ion-item>\n\n\n      </ion-list>\n    </div>\n  </ion-col>\n</ion-content>\n'/*ion-inline-end:"/home/rishabh/test/src/pages/kitchen/kitchen.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], KitchenPage);
@@ -339,11 +352,16 @@ var LivingRoomPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_2_firebase_app__["initializeApp"](config);
         }
         var ref = __WEBPACK_IMPORTED_MODULE_2_firebase_app__["app"]().database().ref();
-        var databaseref1 = ref.child("air_quality");
+        var databaseref1 = ref.child("livingroomfan");
         var databaseref8 = ref.child("livingroomstate");
         databaseref1.on("value", function (snapshot) {
             LivingRoomPage_1.value1 = snapshot.val();
-            console.log(LivingRoomPage_1.value1);
+            if (LivingRoomPage_1.value1) {
+                LivingRoomPage_1.livingroomfan = true;
+            }
+            else {
+                LivingRoomPage_1.livingroomfan = false;
+            }
         }, function (errorObject) {
             console.log("The read failed: " + errorObject.code);
         });
@@ -375,6 +393,21 @@ var LivingRoomPage = /** @class */ (function () {
             return databaseref8.set(0);
         }
     };
+    LivingRoomPage.prototype.livingroomfanValue = function () {
+        var toast = this.toastCtrl.create({
+            message: 'Aplliances handeled successfully',
+            duration: 3000
+        });
+        toast.present();
+        var ref = __WEBPACK_IMPORTED_MODULE_2_firebase_app__["app"]().database().ref();
+        var databaseref1 = ref.child("livingroomfan");
+        if (LivingRoomPage_1.value1 == 0) {
+            return databaseref1.set(1);
+        }
+        else {
+            return databaseref1.set(0);
+        }
+    };
     Object.defineProperty(LivingRoomPage.prototype, "livingstatevalue", {
         get: function () {
             return LivingRoomPage_1.livingroom;
@@ -382,9 +415,9 @@ var LivingRoomPage = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(LivingRoomPage.prototype, "value1func", {
+    Object.defineProperty(LivingRoomPage.prototype, "livingstatefanvalue", {
         get: function () {
-            return LivingRoomPage_1.value1;
+            return LivingRoomPage_1.livingroomfan;
         },
         enumerable: true,
         configurable: true
@@ -394,7 +427,7 @@ var LivingRoomPage = /** @class */ (function () {
     };
     LivingRoomPage = LivingRoomPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-living-room',template:/*ion-inline-start:"/home/rishabh/test/src/pages/living-room/living-room.html"*/'<!--\n  Generated template for the LivingRoomPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Living Room</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="background">\n\n    <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      \n    <ion-col class="items">\n      <ion-card-title class="font">\n        <strong><em>Usage:</em></strong>\n      </ion-card-title>\n\n      <hr style="margin-top:-7px;background-color:aliceblue">\n      <div>\n        <ion-list>\n          <ion-item class="card">\n            <ion-label>Light: </ion-label>\n            <ion-toggle [(ngModel)]="livingstatevalue" (click)="livingroomValue()"></ion-toggle>\n            <h1>{{livingroom}}</h1>\n          </ion-item>\n\n          <ion-item class="card">\n            <ion-label>Fan: </ion-label>\n            <ion-toggle [(ngModel)]="livingstatevalue" (click)="livingroomValue()"></ion-toggle>\n            <h1>{{livingroom}}</h1>\n          </ion-item>\n\n        </ion-list>\n      </div>\n    </ion-col>\n\n</ion-content>\n'/*ion-inline-end:"/home/rishabh/test/src/pages/living-room/living-room.html"*/,
+            selector: 'page-living-room',template:/*ion-inline-start:"/home/rishabh/test/src/pages/living-room/living-room.html"*/'<!--\n  Generated template for the LivingRoomPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Living Room</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="background">\n\n    <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>      \n    <ion-col class="items">\n      <ion-card-title class="font">\n        <strong><em>Usage:</em></strong>\n      </ion-card-title>\n\n      <hr style="margin-top:-7px;background-color:aliceblue">\n      <div>\n        <ion-list>\n          <ion-item class="card">\n            <ion-label>Light: </ion-label>\n            <ion-toggle [(ngModel)]="livingstatevalue" (click)="livingroomValue()"></ion-toggle>\n            <h1>{{livingroom}}</h1>\n          </ion-item>\n\n          <ion-item class="card">\n            <ion-label>Fan: </ion-label>\n            <ion-toggle [(ngModel)]="livingstatefanvalue" (click)="livingroomfanValue()"></ion-toggle>\n            <h1>{{livingroom}}</h1>\n          </ion-item>\n\n        </ion-list>\n      </div>\n    </ion-col>\n\n</ion-content>\n'/*ion-inline-end:"/home/rishabh/test/src/pages/living-room/living-room.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], LivingRoomPage);
@@ -451,14 +484,7 @@ var WashroomPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_2_firebase_app__["initializeApp"](config);
         }
         var ref = __WEBPACK_IMPORTED_MODULE_2_firebase_app__["app"]().database().ref();
-        var databaseref3 = ref.child("motion");
         var databaseref6 = ref.child("washroomstate");
-        databaseref3.on("value", function (snapshot) {
-            WashroomPage_1.value3 = snapshot.val();
-            console.log(WashroomPage_1.value3);
-        }, function (errorObject) {
-            console.log("The read failed: " + errorObject.code);
-        });
         databaseref6.on("value", function (snapshot) {
             WashroomPage_1.value6 = snapshot.val();
             if (WashroomPage_1.value6) {
@@ -472,13 +498,6 @@ var WashroomPage = /** @class */ (function () {
         });
     }
     WashroomPage_1 = WashroomPage;
-    Object.defineProperty(WashroomPage.prototype, "value3func", {
-        get: function () {
-            return WashroomPage_1.value3;
-        },
-        enumerable: true,
-        configurable: true
-    });
     WashroomPage.prototype.washroomValue = function () {
         var ref = __WEBPACK_IMPORTED_MODULE_2_firebase_app__["app"]().database().ref();
         var databaseref6 = ref.child("washroomstate");
@@ -494,12 +513,19 @@ var WashroomPage = /** @class */ (function () {
         });
         toast.present();
     };
+    Object.defineProperty(WashroomPage.prototype, "washroomstatevalue", {
+        get: function () {
+            return WashroomPage_1.washroom;
+        },
+        enumerable: true,
+        configurable: true
+    });
     WashroomPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad WashroomPage');
     };
     WashroomPage = WashroomPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-washroom',template:/*ion-inline-start:"/home/rishabh/test/src/pages/washroom/washroom.html"*/'<!--\n  Generated template for the WashroomPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Washroom</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="background">\n\n    <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>\n    <ion-col>\n      <ion-card-title class="font">\n        <strong><em>Usage:</em></strong>\n      </ion-card-title>\n      <hr style="margin-top:-7px;background-color:aliceblue">\n      <div class="items">\n          <ion-list>\n              <ion-item class="card">\n                <ion-label>Gyser : {{value3func}}</ion-label>\n                <ion-toggle [(ngModel)]="washroomstatevalue" (click)="washroomValue()"></ion-toggle>\n              </ion-item>\n\n              <ion-item class="card">\n                  <ion-label>Lights : {{value3func}}</ion-label>\n                  <ion-toggle [(ngModel)]="washroomstatevalue" (click)="washroomValue()"></ion-toggle>\n              </ion-item>\n\n          </ion-list>\n      </div>\n    </ion-col>\n\n</ion-content>\n'/*ion-inline-end:"/home/rishabh/test/src/pages/washroom/washroom.html"*/,
+            selector: 'page-washroom',template:/*ion-inline-start:"/home/rishabh/test/src/pages/washroom/washroom.html"*/'<!--\n  Generated template for the WashroomPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Washroom</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="background">\n\n    <div style="margin-left:-15px;margin-top:2%;margin-bottom:2%;border-left: 1px solid rgba(255, 255, 255, 0.589);"></div>\n    <ion-col>\n      <ion-card-title class="font">\n        <strong><em>Usage:</em></strong>\n      </ion-card-title>\n      <hr style="margin-top:-7px;background-color:aliceblue">\n      <div class="items">\n          <ion-list>\n             \n\n              <ion-item class="card">\n                  <ion-label>Lights : {{value3func}}</ion-label>\n                  <ion-toggle [(ngModel)]="washroomstatevalue" (click)="washroomValue()"></ion-toggle>\n              </ion-item>\n\n          </ion-list>\n      </div>\n    </ion-col>\n\n</ion-content>\n'/*ion-inline-end:"/home/rishabh/test/src/pages/washroom/washroom.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], WashroomPage);
@@ -878,31 +904,45 @@ var HomePage = /** @class */ (function () {
                 var databaseref6 = ref.child("washroomstate");
                 var databaseref7 = ref.child("bedroomstate");
                 var databaseref8 = ref.child("livingroomstate");
+                var databaseref4 = ref.child("livingroomfan");
+                var databaseref3 = ref.child("bedroomfan");
                 _this.matches = matches;
                 switch (matches[0]) {
-                    case "turn off bedroom":
+                    case "turn off bedroom light":
                         databaseref7.set(0);
                         break;
-                    case "turn off washroom":
+                    case "turn off washroom light":
                         databaseref6.set(0);
                         break;
-                    case "turn off kitchen":
+                    case "turn off kitchen light":
                         databaseref5.set(0);
                         break;
-                    case "turn off living room":
+                    case "turn off living room light":
                         databaseref8.set(0);
                         break;
-                    case "turn on bedroom":
+                    case "turn on bedroom light":
                         databaseref7.set(1);
                         break;
-                    case "turn on washroom":
+                    case "turn on washroom light":
                         databaseref6.set(1);
                         break;
-                    case "turn on kitchen":
+                    case "turn on kitchen light":
                         databaseref5.set(1);
                         break;
-                    case "turn on living room":
+                    case "turn on living room light":
                         databaseref8.set(1);
+                        break;
+                    case "turn on living room fan":
+                        databaseref4.set(1);
+                        break;
+                    case "turn off living room fan":
+                        databaseref4.set(1);
+                        break;
+                    case "turn on bedroom fan":
+                        databaseref3.set(1);
+                        break;
+                    case "turn off bedroom light":
+                        databaseref3.set(1);
                         break;
                 }
             });

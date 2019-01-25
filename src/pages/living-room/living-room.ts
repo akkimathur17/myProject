@@ -28,6 +28,7 @@ import { ToastController } from 'ionic-angular';
 })
 export class LivingRoomPage {
   static value1: any;
+  static livingroomfan:boolean;
   static livingroom: boolean;
   static value8: any;
 
@@ -46,16 +47,24 @@ export class LivingRoomPage {
   }
   
   var ref= firebase.app().database().ref();
-  var databaseref1=ref.child("air_quality");
+  var databaseref1=ref.child("livingroomfan");
   var databaseref8=ref.child("livingroomstate");
   
+ 
   databaseref1.on("value", function(snapshot) {
-    LivingRoomPage.value1 = snapshot.val();
-    console.log(LivingRoomPage.value1);
-   }, 
-   function (errorObject) {
+    LivingRoomPage.value1=snapshot.val();
+    if(LivingRoomPage.value1){
+      LivingRoomPage.livingroomfan=true;
+    }
+    else{
+          LivingRoomPage.livingroomfan=false;
+        }
+    }, 
+
+  function (errorObject) {
     console.log("The read failed: " + errorObject.code);
-   });
+  }); 
+
   
   
   databaseref8.on("value", function(snapshot) {
@@ -92,13 +101,31 @@ export class LivingRoomPage {
     
   } 
 
+  livingroomfanValue(){
+    const toast = this.toastCtrl.create({
+      message: 'Aplliances handeled successfully',  //Creating toast at bottom
+      duration: 3000
+    });
+    toast.present();
+    var ref= firebase.app().database().ref();
+    var databaseref1=ref.child("livingroomfan");
+    if(LivingRoomPage.value1==0){
+      return databaseref1.set(1);
+    }
+    else{
+          return databaseref1.set(0);
+        }
+    
+  } 
+
   get livingstatevalue(){
     return LivingRoomPage.livingroom;
   }
-
-  get  value1func(){
-    return LivingRoomPage.value1;
+  get livingstatefanvalue(){
+    return LivingRoomPage.livingroomfan;
   }
+
+ 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LivingRoomPage');

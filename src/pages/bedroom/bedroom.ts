@@ -16,9 +16,11 @@ import { ToastController } from 'ionic-angular';
   templateUrl: 'bedroom.html',
 })
 export class BedroomPage {
-  static value4: any;
+ 
   static bedroom: any;
+  static bedroomfan:any;
   static value7: number;
+  static value8:number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public toastCtrl: ToastController) {
     var config = {
@@ -32,15 +34,9 @@ export class BedroomPage {
 if(!firebase.app.length){
 firebase.initializeApp(config);}
    var ref= firebase.app().database().ref();
-   var databaseref4=ref.child("temp");
+   
    var databaseref7=ref.child("bedroomstate");
-
-   databaseref4.on("value", function(snapshot) {
-    BedroomPage.value4 = snapshot.val();
-    console.log(BedroomPage.value4); 
-   }, function (errorObject) {
-     console.log("The read failed: " + errorObject.code);
-   });
+   var databaseref8=ref.child("bedroomfan");
 
    databaseref7.on("value", function(snapshot) {
     BedroomPage.value7=snapshot.val();
@@ -53,6 +49,17 @@ firebase.initializeApp(config);}
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
    });
+   databaseref8.on("value", function(snapshot) {
+    BedroomPage.value8=snapshot.val();
+    if(BedroomPage.value8){
+      BedroomPage.bedroomfan=true;
+     }
+     else{
+       BedroomPage.bedroomfan=false;
+     }
+   }, function (errorObject) {
+     console.log("The read failed: " + errorObject.code);
+   });
    
   }
 
@@ -60,6 +67,9 @@ firebase.initializeApp(config);}
     return BedroomPage.bedroom;
   }
 
+  get bedroomstatefanvalue(){
+    return BedroomPage.bedroomfan;
+  }
   bedroomValue(){
     var ref= firebase.app().database().ref();
     var databaseref7=ref.child("bedroomstate");
@@ -68,6 +78,21 @@ firebase.initializeApp(config);}
        }
        else{
             databaseref7.set(0);
+        }
+    const toast = this.toastCtrl.create({
+      message: 'Aplliances handeled successfully',
+      duration: 3000
+    });
+    toast.present();
+  }
+  bedroomfanValue(){
+    var ref= firebase.app().database().ref();
+    var databaseref8=ref.child("bedroomfan");
+    if(BedroomPage.value8==0){
+      databaseref8.set(1);
+       }
+       else{
+            databaseref8.set(0);
         }
     const toast = this.toastCtrl.create({
       message: 'Aplliances handeled successfully',

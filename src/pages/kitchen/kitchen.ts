@@ -28,8 +28,7 @@ export class KitchenPage {
 
   static value5: any;
   static kitchen: boolean;
-  static value2: any;
-
+ 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
 
     var config = {
@@ -46,16 +45,10 @@ export class KitchenPage {
   }
     
   var ref= firebase.app().database().ref();
-  var databaseref2=ref.child("humidity");
+ 
   var databaseref5=ref.child("kitchenstate");
 
-  databaseref2.on("value", function(snapshot) {
-    KitchenPage.value2 = snapshot.val();
-    console.log(KitchenPage.value2);
-   }, 
-   function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
-   });
+  
 
    databaseref5.on("value", function(snapshot) {
     KitchenPage.value5=snapshot.val();
@@ -91,10 +84,6 @@ export class KitchenPage {
   
   get kitchenstatevalue(){
     return KitchenPage.kitchen;
-  }
-
-  get value2func(){
-    return KitchenPage.value2;
   }
 
   ionViewDidLoad() {

@@ -247,31 +247,45 @@ ngOnInit() {
    var databaseref6=ref.child("washroomstate");
    var databaseref7=ref.child("bedroomstate");
    var databaseref8=ref.child("livingroomstate");
+   var databaseref4=ref.child("livingroomfan");
+   var databaseref3=ref.child("bedroomfan");
           this.matches = matches;
         switch(matches[0]){
-          case "turn off bedroom":
+          case "turn off bedroom light":
           databaseref7.set(0);
           break;
-          case "turn off washroom":
+          case "turn off washroom light":
           databaseref6.set(0);
           break;
-          case "turn off kitchen":
+          case "turn off kitchen light":
           databaseref5.set(0);
           break;
-          case "turn off living room":
+          case "turn off living room light":
           databaseref8.set(0);
           break;
-          case "turn on bedroom":
+          case "turn on bedroom light":
           databaseref7.set(1);
           break;
-          case "turn on washroom":
+          case "turn on washroom light":
           databaseref6.set(1);
           break;
-          case "turn on kitchen":
+          case "turn on kitchen light":
           databaseref5.set(1);
           break;
-          case "turn on living room":
+          case "turn on living room light":
           databaseref8.set(1);
+          break;
+          case "turn on living room fan":
+          databaseref4.set(1);
+          break;
+          case "turn off living room fan":
+          databaseref4.set(1);
+          break;
+          case "turn on bedroom fan":
+          databaseref3.set(1);
+          break;
+          case "turn off bedroom light":
+          databaseref3.set(1);
           break;
         }
         

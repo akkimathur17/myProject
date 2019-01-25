@@ -17,7 +17,7 @@ import { ToastController } from 'ionic-angular';
   templateUrl: 'washroom.html',
 })
 export class WashroomPage {
-  static value3: any;
+ 
   static value6: any;
   static washroom: boolean;
 
@@ -34,15 +34,10 @@ export class WashroomPage {
 if(!firebase.app.length){
 firebase.initializeApp(config);}
    var ref= firebase.app().database().ref();
-   var databaseref3=ref.child("motion");
+  
    var databaseref6=ref.child("washroomstate");
 
-   databaseref3.on("value", function(snapshot) {
-    WashroomPage.value3 = snapshot.val();
-    console.log(WashroomPage.value3);
-   }, function (errorObject) {
-     console.log("The read failed: " + errorObject.code);
-   });
+  
 
    databaseref6.on("value", function(snapshot) {
     
@@ -57,10 +52,6 @@ firebase.initializeApp(config);}
      console.log("The read failed: " + errorObject.code);
    });
    
-  }
-
-  get value3func(){
-    return WashroomPage.value3;
   }
 
   washroomValue(){
@@ -78,7 +69,9 @@ firebase.initializeApp(config);}
     });
     toast.present();
   }
-
+   get washroomstatevalue(){
+     return WashroomPage.washroom;
+   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad WashroomPage');
   }

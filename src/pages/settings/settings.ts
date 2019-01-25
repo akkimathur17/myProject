@@ -12,7 +12,9 @@ export class SettingsPage {
   constructor(
     public navCtrl: NavController,
     private settings: SettingsProvider
-  ) { }
+  ) { 
+    
+  }
 
   toggleAppTheme() {
     this.settings.setActiveTheme('dark-theme');
