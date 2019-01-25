@@ -30589,6 +30589,14 @@ h1, h2, h3 {
   font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
 }
 
+page-bedroom .background {
+  background-color: rgba(0, 0, 0, 0.918);
+}
+
+page-bedroom .font {
+  color: white;
+}
+
 .ios page-home .btn,
 .md page-home .btn {
   background-color: lightsteelblue;
@@ -30653,15 +30661,102 @@ h1, h2, h3 {
 
 .ios page-home .card,
 .md page-home .card {
-  background-color: white;
+  background: white;
 }
 
 .ios page-home .background,
 .md page-home .background {
-  background-color: rgba(0, 0, 0, 0.918);
+  background-image: url("../../assets/images/back1.jpg");
 }
 
 .ios page-home .font,
 .md page-home .font {
+  text-align: center;
   color: black;
+}
+
+.ios page-home .cardFont,
+.md page-home .cardFont {
+  color: black;
+}
+
+.ios page-home .fabFont,
+.md page-home .fabFont {
+  color: white;
+}
+
+.ios page-home .centered,
+.md page-home .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgba(11, 1, 22, 0.589);
+}
+
+.ios page-home .chat-item.ng-enter,
+.md page-home .chat-item.ng-enter {
+  -webkit-animation: fadeInLeft 1s;
+  animation: fadeInLeft 1s;
+}
+
+.ios page-home .chat-item.ng-enter-stagger,
+.md page-home .chat-item.ng-enter-stagger {
+  -webkit-animation-delay: 200ms;
+  animation-delay: 200ms;
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration: 0;
+  animation-duration: 0;
+}
+
+.ios page-home .image,
+.md page-home .image {
+  width: auto;
+  height: auto;
+}
+
+page-kitchen .background {
+  background-color: rgba(0, 0, 0, 0.918);
+}
+
+page-kitchen .font {
+  color: white;
+}
+
+page-living-room .background {
+  background-color: rgba(0, 0, 0, 0.918);
+}
+
+page-living-room .font {
+  color: white;
+}
+
+page-login .background {
+  background-image: url("../../assets/images/back1.jpg");
+}
+
+page-login .font {
+  color: white;
+}
+
+page-login .form {
+  margin-top: 115px;
+}
+
+page-signup .background {
+  background-image: url("../../assets/images/back1.jpg");
+}
+
+page-signup .font {
+  color: white;
+}
+
+page-washroom .background {
+  background-color: rgba(0, 0, 0, 0.918);
+}
+
+page-washroom .font {
+  color: white;
 }

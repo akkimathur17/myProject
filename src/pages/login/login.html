@@ -7,15 +7,15 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content>
-	<form (ngSubmit)="login()" [formGroup]="loginForm">
+<ion-content class="background">
+	<form class="form" (ngSubmit)="login()" [formGroup]="loginForm">
 		<ion-list inset>
 
 			<ion-item [ngClass]="{ invalid: emailErrors.hasError('*', ['touched', 'dirty']) }">
 				<ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
 			</ion-item>
 
-			<div ngxErrors="email" #emailErrors="ngxErrors">
+			<div ngxErrors="email" #emailErrors="ngxErrors" class="font">
 				<div [ngxError]="['email', 'required']" [when]="['touched', 'dirty']">It should be a valid email</div>
 			</div>
 
@@ -23,7 +23,7 @@
 				<ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
 			</ion-item>
 
-			<div ngxErrors="password" #passwordErrors="ngxErrors">
+			<div ngxErrors="password" #passwordErrors="ngxErrors" class="font">
 				<div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 5 characters</div>
 			</div>
 		</ion-list>
@@ -33,7 +33,7 @@
 
 			<button ion-button full type="submit" [disabled]="!loginForm.valid">Log in</button>
 			<div class="login-footer">
-				<p>
+				<p class="font">
 					<a href="#">Forgot password?</a>
 					If you're a new user, please sign up.
 				</p>

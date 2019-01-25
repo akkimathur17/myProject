@@ -4,7 +4,7 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="background">
 
 	<form (ngSubmit)="signup()" [formGroup]="form">
 		<ion-list inset>
@@ -29,7 +29,7 @@
 		<div padding-horizontal>
 			<div class="form-error">{{signupError}}</div>
 
-			<button ion-button full type="submit" [disabled]="!form.valid">Sign up</button>
+			<button class="font" ion-button full type="submit" [disabled]="!form.valid">Sign up</button>
 		</div>
 	</form>
 </ion-content>

@@ -9,6 +9,10 @@ import * as firebase from 'firebase/app';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import {  NgZone } from '@angular/core';
 import { GlobalProvider } from '../../providers/global/global';
+import { LivingRoomPage } from '../living-room/living-room';
+import { KitchenPage } from '../kitchen/kitchen';
+import { BedroomPage } from '../bedroom/bedroom';
+import { WashroomPage } from '../washroom/washroom';
 
 
 
@@ -61,9 +65,6 @@ firebase.initializeApp(config);}
    var databaseref6=ref.child("washroomstate");
    var databaseref7=ref.child("bedroomstate");
    var databaseref8=ref.child("livingroomstate");
-   
-   
-
    
    databaseref1.on("value", function(snapshot) {
    HomePage.value1 = snapshot.val();
@@ -200,6 +201,22 @@ ngOnInit() {
 
   onContact(){
     this.navCtrl.push(AboutPage);
+  }
+
+  onLivingRoom(){
+    this.navCtrl.push(LivingRoomPage);
+  }
+
+  onKitchen(){
+    this.navCtrl.push(KitchenPage);
+  }
+
+  onBedroom(){
+    this.navCtrl.push(BedroomPage);
+  }
+
+  onWash(){
+    this.navCtrl.push(WashroomPage);
   }
 
   slideChanged() {

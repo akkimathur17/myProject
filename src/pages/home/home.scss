@@ -45,13 +45,47 @@
       }
     }
     .card{
-      background-color: white;
+      //background-color: rgb(13, 139, 197);
+      //background-color: rgba(14, 149, 226, 0.719);
+      background: white;
     }
     .background{
-      background-color: rgba(0, 0, 0, 0.918);
+      background-image: url("../../assets/images/back1.jpg");
+      //background-color: rgba(0, 0, 0, 0.918);
     }
     .font{
+      text-align: center;
       color: black;
+    }
+    .cardFont{
+      color: black;
+    }
+    .fabFont{
+      color: white;
+    }
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color:  rgba(11, 1, 22, 0.589);
+    } 
+    .chat-item.ng-enter {
+      -webkit-animation: fadeInLeft 1s;
+      animation: fadeInLeft 1s;
+    }
+    .chat-item.ng-enter-stagger {
+      -webkit-animation-delay:200ms;
+      animation-delay:200ms;
+    
+      /* override to make sure it's not inherited from other styles */
+      -webkit-animation-duration:0;
+      animation-duration:0;
+    }
+    .image{
+      width: auto;
+      height: auto;
     }
   }
 }

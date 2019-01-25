@@ -22,6 +22,10 @@ import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import {NgxErrorsModule} from '@ultimate/ngxerrors'
+import { LivingRoomPage } from '../pages/living-room/living-room';
+import { KitchenPage } from '../pages/kitchen/kitchen';
+import { BedroomPage } from '../pages/bedroom/bedroom';
+import { WashroomPage } from '../pages/washroom/washroom';
 
 
 var config = {
@@ -43,7 +47,11 @@ var config = {
     LoginPage,
     SignupPage,
     ControlsPage,
-    SettingsPage
+    SettingsPage,
+    LivingRoomPage,
+    KitchenPage,
+    BedroomPage,
+    WashroomPage
   ],
   imports: [
     BrowserModule,
@@ -63,7 +71,11 @@ var config = {
     LoginPage,
     SignupPage,
     ControlsPage,
-    SettingsPage
+    SettingsPage,
+    LivingRoomPage,
+    KitchenPage,
+    BedroomPage,
+    WashroomPage
   ],
   providers: [
     StatusBar,
