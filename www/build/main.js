@@ -1199,10 +1199,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen, settings, auth, menu) {
         var _this = this;
+        this.platform = platform;
+        this.statusBar = statusBar;
         this.settings = settings;
         this.auth = auth;
         this.menu = menu;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */];
         this.settings.getActiveTheme().subscribe(function (val) { return _this.selectedTheme = val; });
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
@@ -1210,9 +1211,13 @@ var MyApp = /** @class */ (function () {
             statusBar.styleDefault();
             splashScreen.hide();
         });
+        this.initializeApp();
     }
-    MyApp.prototype.intializeApp = function () {
+    MyApp.prototype.initializeApp = function () {
         var _this = this;
+        this.platform.ready().then(function () {
+            _this.statusBar.styleDefault();
+        });
         this.auth.afAuth.authState
             .subscribe(function (user) {
             if (user) {
@@ -1524,9 +1529,6 @@ var LoginPage = /** @class */ (function () {
         };
         this.auth.signInWithEmail(credentials)
             .then(function () { return _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__tabs_tabs__["a" /* TabsPage */]); }, function (error) { return _this.loginError = error.message; });
-    };
-    LoginPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad LoginPage');
     };
     LoginPage.prototype.signup = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__signup_signup__["a" /* SignupPage */]);

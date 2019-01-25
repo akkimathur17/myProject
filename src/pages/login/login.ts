@@ -47,9 +47,7 @@ export class LoginPage {
 			);
 	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+	
   signup(){
     this.navCtrl.push(SignupPage);
   }

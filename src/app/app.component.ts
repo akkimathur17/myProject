@@ -17,12 +17,12 @@ import { AuthProvider } from '../providers/auth/auth';
 export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
   
-  rootPage:any = LoginPage;
+  rootPage:any;
   selectedTheme: String;
   
   constructor(
-    platform: Platform,
-    statusBar: StatusBar,
+    public platform: Platform,
+    public statusBar: StatusBar,
     splashScreen: SplashScreen,
     public settings: SettingsProvider,
   public auth:AuthProvider,public menu:MenuController) {
@@ -33,10 +33,12 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-  
+  this.initializeApp();
   }
-  intializeApp(){
-    
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+    });
   
     this.auth.afAuth.authState
       .subscribe(
