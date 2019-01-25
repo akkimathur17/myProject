@@ -46,7 +46,10 @@ export class LoginPage {
 				error => this.loginError = error.message
 			);
 	}
-
+	loginWithGoogle() {
+		this.auth.signInWithGoogle();
+		this.navCtrl.setRoot(TabsPage);
+	}
 	
   signup(){
     this.navCtrl.push(SignupPage);

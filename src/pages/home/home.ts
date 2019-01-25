@@ -279,13 +279,13 @@ ngOnInit() {
           databaseref4.set(1);
           break;
           case "turn off living room fan":
-          databaseref4.set(1);
+          databaseref4.set(0);
           break;
           case "turn on bedroom fan":
           databaseref3.set(1);
           break;
           case "turn off bedroom light":
-          databaseref3.set(1);
+          databaseref3.set(0);
           break;
         }
         
