@@ -26,6 +26,7 @@ import { LivingRoomPage } from '../pages/living-room/living-room';
 import { KitchenPage } from '../pages/kitchen/kitchen';
 import { BedroomPage } from '../pages/bedroom/bedroom';
 import { WashroomPage } from '../pages/washroom/washroom';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 
 var config = {
@@ -87,6 +88,7 @@ var config = {
     AngularFireAuth,
     AuthProvider,
     GlobalProvider,
+    GooglePlus,
   
     AuthProvider
   ]

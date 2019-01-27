@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import {NgxErrorsModule} from '@ultimate/ngxerrors'
 import { SignupPage } from '../signup/signup';
+import { resolve } from 'path';
 /**
  * Generated class for the LoginPage page.
  *
@@ -47,8 +48,15 @@ export class LoginPage {
 			);
 	}
 	loginWithGoogle() {
-		this.auth.signInWithGoogle();
-		this.navCtrl.setRoot(TabsPage);
+		
+		this.auth.signInWithGoogle().then(
+      () => this.navCtrl.setRoot(TabsPage),
+      error => console.log(error.message)
+    );
+		
+		
+		
+	
 	}
 	
   signup(){

@@ -31,10 +31,6 @@ export class HomePage {
   public static value6:any;
   public static value7:any;
   public static value8:any;
-  public static livingroom:boolean;
-  public static washroom:boolean;
-  public static bedroom:boolean;
-  public static kitchen:boolean;
   
    
   
@@ -94,60 +90,7 @@ firebase.initializeApp(config);}
    }, function (errorObject) {
      console.log("The read failed: " + errorObject.code);
    });
-   //kitchen
-   databaseref5.on("value", function(snapshot) {
-    
-    HomePage.value5=snapshot.val();
-    if(HomePage.value5){
-      HomePage.kitchen=true;
-     }
-     else{
-       HomePage.kitchen=false;
-     }
-   }, function (errorObject) {
-     console.log("The read failed: " + errorObject.code);
-   });
-
-   //washroom
-   databaseref6.on("value", function(snapshot) {
-    
-    HomePage.value6=snapshot.val();
-    if(HomePage.value6){
-      HomePage.washroom=true;
-     }
-     else{
-       HomePage.washroom=false;
-     }
-   }, function (errorObject) {
-     console.log("The read failed: " + errorObject.code);
-   });
-   //bedroom
-   databaseref7.on("value", function(snapshot) {
-    
-    HomePage.value7=snapshot.val();
-    
-    if(HomePage.value7){
-      HomePage.bedroom=true;
-     }
-     else{
-       HomePage.bedroom=false;
-     }
-   }, function (errorObject) {
-     console.log("The read failed: " + errorObject.code);
-   });
-   //livingroom
-   databaseref8.on("value", function(snapshot) {
-       HomePage.value8=snapshot.val();
-    if(HomePage.value8){
-     HomePage.livingroom=true;
-    }
-    else{
-      HomePage.livingroom=false;
-    }
-    
-    }, function (errorObject) {
-     console.log("The read failed: " + errorObject.code);
-   }); 
+   
   
   
     
@@ -155,21 +98,21 @@ firebase.initializeApp(config);}
 
   }
 ngOnInit() {
+this.speech.hasPermission()
+    .then((hasPermission: boolean) => {
 
-    this.speech.hasPermission()
-      .then((hasPermission: boolean) => {
+      if (!hasPermission) {
+      this.speech.requestPermission()
+        .then(
+          () => console.log('Granted'),
+          () => console.log('Denied')
+        )
+      }
 
-        if (!hasPermission) {
-        this.speech.requestPermission()
-          .then(
-            () => console.log('Granted'),
-            () => console.log('Denied')
-          )
-        }
+   });
+   
 
-     });
-
-  }
+}
   get livingstatevalue(){
     return HomePage.livingroom;
   }
@@ -237,7 +180,7 @@ ngOnInit() {
       this.toggleListenMode();
       return;
     }
-
+    
     
     this.speech.startListening()
       .subscribe(matches => {
@@ -284,9 +227,28 @@ ngOnInit() {
           case "turn on bedroom fan":
           databaseref3.set(1);
           break;
-          case "turn off bedroom light":
+          case "turn off bedroom fan":
           databaseref3.set(0);
           break;
+          case "turn on all":
+          databaseref3.set(1);
+          databaseref4.set(1);
+          databaseref5.set(1);
+          databaseref6.set(1);
+          databaseref7.set(1);
+          databaseref8.set(1);
+           break;
+           case "turn off all":
+          databaseref3.set(0);
+          databaseref4.set(0);
+          databaseref5.set(0);
+          databaseref6.set(0);
+          databaseref7.set(0);
+          databaseref8.set(0);
+           break;
+
+
+         
         }
         
         
@@ -301,43 +263,6 @@ ngOnInit() {
     console.log('listening mode is now : ' + this.isListening);
   }
  
-   kitchenValue(){
-    var ref= firebase.app().database().ref();
-    var databaseref5=ref.child("kitchenstate");
-    if(HomePage.value5==0){
-      databaseref5.set(1);
-       }
-       else{
-databaseref5.set(0);
-       }
-    }
-  washroomValue(){
-    var ref= firebase.app().database().ref();
-    var databaseref6=ref.child("washroomstate");
-    if(HomePage.value6==0){
-      databaseref6.set(1);
-       }
-       else{
-databaseref6.set(0);
-       }}
-  bedroomValue(){
-        var ref= firebase.app().database().ref();
-        var databaseref7=ref.child("bedroomstate");
-        if(HomePage.value7==0){
-          databaseref7.set(1);
-           }
-           else{
-    databaseref7.set(0);
-           }}
-    livingroomValue(){
-            var ref= firebase.app().database().ref();
-            var databaseref8=ref.child("livingroomstate");
-            if(HomePage.value8==0){
-              databaseref8.set(1);
-               }
-               else{
-        databaseref8.set(0);
-               }}
-
+  
 
               }

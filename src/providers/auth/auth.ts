@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import {GooglePlus} from '@ionic-native/google-plus'
 
 
 /*
@@ -13,7 +14,7 @@ import * as firebase from 'firebase/app';
 export class AuthProvider{
   private user: firebase.User;
 
-  constructor(public afAuth:AngularFireAuth) {
+  constructor(public afAuth:AngularFireAuth,public googleplus:GooglePlus) {
     afAuth.authState.subscribe(user => {
 			this.user = user;
 		});
@@ -36,31 +37,28 @@ export class AuthProvider{
   signOut(): Promise<void> {
     return this.afAuth.auth.signOut();
   }
-  signInWithGoogle() {
+  signInWithGoogle():Promise<any> {
 		console.log('Sign in with google');
 	var provider =new firebase.auth.GoogleAuthProvider();
   if (!(<any>window).cordova) {
 		return this.afAuth.auth.signInWithPopup(provider);
 	} else {
-		return this.afAuth.auth.signInWithRedirect(provider)
+
+    return this.afAuth.auth.signInWithRedirect(provider)
 		.then(() => {
 			return this.afAuth.auth.getRedirectResult().then( result => {
 				// This gives you a Google Access Token.
 				// You can use it to access the Google API.
-				
+			
 				// The signed-in user info.
 				let user = result.user;
-			
+				console.log(user);
 			}).catch(function(error) {
 				// Handle Errors here.
 				alert(error.message);
 			});
 		});
-	}
-}
-
-
-  
-  
 
 }
+ 
+}}
